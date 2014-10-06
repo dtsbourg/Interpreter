@@ -15,6 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        Lex(input: "47.6 + 93 / 2 - hello * 2")
         // Insert code here to initialize your application
     }
 

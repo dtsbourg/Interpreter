@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC07D80019E294650022B6DF /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC07D7FF19E294650022B6DF /* Parser.swift */; };
 		FC5AE41219E1CCC9005708DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE41119E1CCC9005708DC /* AppDelegate.swift */; };
 		FC5AE41419E1CCC9005708DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC5AE41319E1CCC9005708DC /* Images.xcassets */; };
 		FC5AE41719E1CCC9005708DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5AE41519E1CCC9005708DC /* MainMenu.xib */; };
 		FC5AE42319E1CCC9005708DC /* SwiftInterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE42219E1CCC9005708DC /* SwiftInterpreterTests.swift */; };
+		FC5AE42D19E1CD15005708DC /* Lex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE42C19E1CD15005708DC /* Lex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +26,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC07D7FF19E294650022B6DF /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		FC5AE40C19E1CCC9005708DC /* SwiftInterpreter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftInterpreter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5AE41019E1CCC9005708DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC5AE41119E1CCC9005708DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +35,8 @@
 		FC5AE41C19E1CCC9005708DC /* SwiftInterpreterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftInterpreterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC5AE42119E1CCC9005708DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC5AE42219E1CCC9005708DC /* SwiftInterpreterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInterpreterTests.swift; sourceTree = "<group>"; };
+		FC5AE42C19E1CD15005708DC /* Lex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lex.swift; sourceTree = "<group>"; };
+		FC5AE42E19E1D23A005708DC /* testInterp.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testInterp.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +79,9 @@
 			isa = PBXGroup;
 			children = (
 				FC5AE41119E1CCC9005708DC /* AppDelegate.swift */,
+				FC5AE42C19E1CD15005708DC /* Lex.swift */,
+				FC07D7FF19E294650022B6DF /* Parser.swift */,
+				FC5AE42E19E1D23A005708DC /* testInterp.playground */,
 				FC5AE41319E1CCC9005708DC /* Images.xcassets */,
 				FC5AE41519E1CCC9005708DC /* MainMenu.xib */,
 				FC5AE40F19E1CCC9005708DC /* Supporting Files */,
@@ -206,6 +214,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC5AE41219E1CCC9005708DC /* AppDelegate.swift in Sources */,
+				FC5AE42D19E1CD15005708DC /* Lex.swift in Sources */,
+				FC07D80019E294650022B6DF /* Parser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +403,7 @@
 				FC5AE42819E1CCC9005708DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC5AE42919E1CCC9005708DC /* Build configuration list for PBXNativeTarget "SwiftInterpreterTests" */ = {
 			isa = XCConfigurationList;
@@ -401,6 +412,7 @@
 				FC5AE42B19E1CCC9005708DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
