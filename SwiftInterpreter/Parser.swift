@@ -38,113 +38,142 @@ class Parse {
         
     }
     
-    func parse()
+    func parse()->ExpressionNode
     {
-        expression()
-        
+     
         switch self.lookahead
         {
         case .End():
             println("We're cool")
+            return expression()
         case _:
             println("There's a pb \(self.lookahead.description())")
+            return expression()
+
         }
     }
     
-    func expression()
+    func expression()->ExpressionNode
     {
-        signedTerm()
-        sumOp()
+        return sumOp(signedTerm())
     }
     
-    func signedTerm()
+    func signedTerm()->ExpressionNode
     {
         switch self.lookahead
         {
-        case .Operator(op: "+"),.Operator(op: "-"):
+        case .Operator(op: "+"):
             nextToken()
-            term()
+            return term()
+        case .Operator(op: "-"):
+            nextToken()
+            return AdditionExpression(term(), false)
         case _ :
-            term()
+            return term()
         }
     }
     
-    func sumOp()
+    func sumOp(expr:ExpressionNode) -> ExpressionNode
     {
+        var sum:AdditionExpression = AdditionExpression()
+        
         switch self.lookahead
         {
-        case .Operator(op: "+"),.Operator(op: "-"):
+        case .Operator(op: "+"):
+            sum = AdditionExpression(expr,true)
             nextToken()
-            term()
-            sumOp()
+            sum.add(term(), true)
+            return sumOp(sum)
+        case .Operator(op: "-"):
+            sum = AdditionExpression(expr, false)
+            nextToken()
+            sum.add(term(), false)
+            return sumOp(sum)
         case _ :
-            println("End 0")
+            return expr
         }
         
     }
     
-    func term()
+    func term()->ExpressionNode
     {
-        factor()
-        termOp()
+
+        return termOp(factor())
     }
     
-    func termOp()
+    func termOp(expr:ExpressionNode)->ExpressionNode
     {
+        var prod:MultiplicationExpression = MultiplicationExpression()
+
         switch self.lookahead
         {
-        case .Operator(op: "*"),.Operator(op: "/"):
+        case .Operator(op: "*"):
+            prod = MultiplicationExpression(expr,true)
             nextToken()
-            signedFactor()
-            termOp()
+            prod.add(signedFactor(),true)
+            return termOp(prod)
+            
+        case .Operator(op: "/"):
+            prod = MultiplicationExpression(expr,false)
+            nextToken()
+            prod.add(signedFactor(),false)
+            return termOp(prod)
         case _ :
-            println("End 1")
+            return expr
         }
     }
     
-    func signedFactor()
+    func signedFactor()->ExpressionNode
     {
         switch self.lookahead
         {
-        case .Operator(op: "+"),.Operator(op: "-"):
+        case .Operator(op: "+"):
             nextToken()
-            factor()
+            return factor()
+        case .Operator(op: "-"):
+            nextToken()
+            return AdditionExpression(factor(), false)
         case _ :
-            factor()
+            return factor()
         }
     }
     
-    func factor ()
+    func factor ()->ExpressionNode
     {
-        argument()
-        factorOp()
+        return factorOp(argument())
     }
     
-    func factorOp()
+    func factorOp(expr:ExpressionNode)->ExpressionNode
     {
         switch self.lookahead
         {
         case .Operator(op: "^"):
             nextToken()
-            signedFactor()
+            return ExponentialExpression(expr, signedFactor())
         case _ :
-            println("End 2")
+            return expr
         }
     }
     
-    func argument()
+    func argument()->ExpressionNode
     {
-        value()
+        // Future impl will include functions + vars + brackets
+        return value()
     }
     
-    func value()
+    func value()->ExpressionNode
     {
         switch self.lookahead
         {
-        case .FloatLit(value: _), .IntegerLit(value: _):
+        case .FloatLit, .IntegerLit:
+            let expr = ConstantExpressionNode(self.lookahead.doubleValue())
             nextToken()
-        case _ :
-            println("Pb")
+            return expr
+        case .End() :
+            println("Unexpected EOF")
+            return ConstantExpressionNode(0)
+        case _:
+            return ConstantExpressionNode(0)
         }
     }
     

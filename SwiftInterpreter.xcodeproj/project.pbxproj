@@ -38,7 +38,6 @@
 		FC5AE42119E1CCC9005708DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC5AE42219E1CCC9005708DC /* SwiftInterpreterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInterpreterTests.swift; sourceTree = "<group>"; };
 		FC5AE42C19E1CD15005708DC /* Lex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lex.swift; sourceTree = "<group>"; };
-		FC5AE42E19E1D23A005708DC /* testInterp.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testInterp.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +83,6 @@
 				FC5AE42C19E1CD15005708DC /* Lex.swift */,
 				FC07D7FF19E294650022B6DF /* Parser.swift */,
 				FC0F611019E8406E00120180 /* ExpressionTree.swift */,
-				FC5AE42E19E1D23A005708DC /* testInterp.playground */,
 				FC5AE41319E1CCC9005708DC /* Images.xcassets */,
 				FC5AE41519E1CCC9005708DC /* MainMenu.xib */,
 				FC5AE40F19E1CCC9005708DC /* Supporting Files */,

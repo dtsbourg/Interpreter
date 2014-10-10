@@ -21,7 +21,7 @@ enum Node:Int {
 
 protocol ExpressionNode {
     func getType()->Node
-    func getValue()->Float
+    func getValue()->Double
 }
 
 
@@ -35,7 +35,7 @@ class ConstantExpressionNode:ExpressionNode {
     
     //String const ?
     
-    func getValue() -> Float {
+    func getValue() -> Double {
         return self.value
     }
     
@@ -53,11 +53,12 @@ class VariableExpressionNode:ExpressionNode {
     {
         self.name = name
         self.valueSet = false
+        self.value = 0
     }
 
-    func getType()-> ExpressionNode
+    func getType()->Node
     {
-        
+        return Node.Variable
     }
     
     func setValue(val:Double)
@@ -66,7 +67,7 @@ class VariableExpressionNode:ExpressionNode {
         self.valueSet = true
     }
     
-    func getValue() -> Float
+    func getValue() -> Double
     {
         if (self.valueSet)
         {
@@ -75,6 +76,7 @@ class VariableExpressionNode:ExpressionNode {
         else
         {
             println("Error: variable \(name) not set")
+            return 0
         }
     }
 }
@@ -92,31 +94,23 @@ class Term {
     
 }
 
-class SequenceExpressionNode : ExpressionNode
+
+class AdditionExpression : ExpressionNode
 {
-    private let terms:Array<Term>
+ 
+    private var terms:Array<Term>
     
-    init(_ ) {
+    init() {
         self.terms = Array<Term>()
     }
     
     init(_ a:ExpressionNode, _ p:Bool) {
-        self.terms = Array<Term>
+        self.terms = Array<Term>()
         self.terms.append(Term(p,a))
     }
     
     func add(a : ExpressionNode, _ p:Bool) {
         self.terms.append(Term(p,a))
-    }
-}
-
-class AdditionExpression : SequenceExpressionNode
-{
-    init(_){}
-    
-    init(_ a:ExpressionNode, _ p:Bool)
-    {
-        self = SequenceExpressionNode(a,p)
     }
     
     func getType()->Node {
@@ -124,7 +118,7 @@ class AdditionExpression : SequenceExpressionNode
     }
     
     func getValue()->Double {
-        var sum = 0.0
+        var sum:Double = 0.0
         for t in self.terms
         {
             if (t.isPositive)
@@ -141,13 +135,21 @@ class AdditionExpression : SequenceExpressionNode
     }
 }
 
-class MultiplicationExpression : SequenceExpressionNode
+class MultiplicationExpression : ExpressionNode
 {
-    init(_) {}
+    private var terms:Array<Term>
     
-    init(_ a:ExpressionNode, _ p:Bool)
-    {
-        self = SequenceExpressionNode(a,p)
+    init() {
+        self.terms = Array<Term>()
+    }
+    
+    init(_ a:ExpressionNode, _ p:Bool) {
+        self.terms = Array<Term>()
+        self.terms.append(Term(p,a))
+    }
+
+    func add(a : ExpressionNode, _ p:Bool) {
+        self.terms.append(Term(p,a))
     }
     
     func getType()->Node {
@@ -158,7 +160,7 @@ class MultiplicationExpression : SequenceExpressionNode
         var mult = 1.0
         for t in self.terms
         {
-            if (t.positive)
+            if (t.isPositive)
             {
                 mult *= t.expression.getValue()
             }
@@ -172,8 +174,9 @@ class MultiplicationExpression : SequenceExpressionNode
     }
 }
 
-class ExponentialExpression :SequenceExpressionNode
+class ExponentialExpression : ExpressionNode
 {
+    
     private let base:ExpressionNode
     private let exponent:ExpressionNode
     

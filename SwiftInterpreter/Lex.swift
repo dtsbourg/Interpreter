@@ -29,6 +29,17 @@ enum Token {
                 return "End Token"
         }
     }
+    
+    func doubleValue () -> Double {
+        switch self {
+            case let FloatLit(value):
+                return Double(value)
+            case let IntegerLit(value):
+                return Double(value)
+            case _ :
+                return 0
+        }
+    }
 }
 
 protocol RegularExpressionMatchable {
