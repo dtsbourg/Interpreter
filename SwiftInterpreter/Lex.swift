@@ -13,10 +13,11 @@ enum Token {
     case IntegerLit(value:Int)
     case FloatLit(value:Float)
     case Operator(op:String)
+    case End()
     
     func description () -> String {
         switch self {
-            case let Identifier(name):
+        case let Identifier(name):
                 return "Identifier(" + name + ")"
             case let IntegerLit(value):
                 return "IntegerLit(\(value))"
@@ -24,6 +25,8 @@ enum Token {
                 return "FloatLit(\(value))"
             case let Operator(op):
                 return "Operator(" + op + ")"
+            case let End():
+                return "End Token"
         }
     }
 }
@@ -58,7 +61,7 @@ class Lex {
     let input:String
     var tokens:Array<Token>
     
-    init(input:String)
+    init(_ input:String)
     {
         self.input = input
         tokens = Array()
