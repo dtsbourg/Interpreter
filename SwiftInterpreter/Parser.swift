@@ -164,6 +164,16 @@ class Parse {
                     println("Expected closing bracket !")
                     return expr
                 }
+            case .Identifier:
+                let function:Function = FunctionExpressionNode.stringToFunc(lookahead.stringValue())
+                nextToken()
+                if (function != Function.unknown)
+                {
+                    return FunctionExpressionNode(function,argument())
+                }
+                else {
+                    return value()
+                }
             case _:
                 return value()
         }

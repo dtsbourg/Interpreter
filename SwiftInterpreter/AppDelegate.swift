@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
+        println(Parse(Lex("sqrt(2)").tokens).parse().getValue())
         // Insert code here to initialize your application
     }
 

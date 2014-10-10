@@ -18,6 +18,25 @@ enum Node:Int {
     case Function
 }
 
+enum Function:Int {
+    case sin
+    case cos
+    case tan
+    
+    case asin
+    case acos
+    case atan
+    
+    case sqrt
+    case exp
+    
+    case ln
+    case log
+    case log2
+    
+    case unknown
+}
+
 protocol ExpressionNode {
     func getType()->Node
     func getValue()->Double
@@ -80,6 +99,85 @@ class VariableExpressionNode:ExpressionNode {
     }
 }
 
+class FunctionExpressionNode:ExpressionNode {
+    private let function:Function
+    private let argument:ExpressionNode
+    
+    init (_ f:Function,_ arg:ExpressionNode ) {
+        self.function = f
+        self.argument = arg
+    }
+    
+    func getType() -> Node {
+        return Node.Function
+    }
+    
+    func getValue() -> Double {
+        switch self.function
+        {
+        case .sin:
+            return sin(self.argument.getValue())
+        case .cos:
+            return cos(self.argument.getValue())
+        case .tan:
+            return tan(self.argument.getValue())
+        case .asin:
+            return asin(self.argument.getValue())
+        case .acos:
+            return acos(self.argument.getValue())
+        case .atan:
+            return atan(self.argument.getValue())
+        case .exp:
+            return exp(self.argument.getValue())
+        case .sqrt:
+            return sqrt(self.argument.getValue())
+        case .ln:
+            return log(self.argument.getValue())
+        case .log:
+            return log(self.argument.getValue()) * 0.43429448190325182765
+        case .log2:
+            return log(self.argument.getValue()) * 1.442695040888963407360
+        case _:
+            println("Unknown function !")
+            return 0
+        }
+    }
+    
+    class func stringToFunc(f:String) -> Function
+    {
+        switch f {
+        case "sin":
+            return Function.sin
+        case "cos":
+            return Function.cos
+        case "tan":
+            return Function.tan
+        case "asin":
+            return Function.acos
+        case "acos":
+            return Function.acos
+        case "atan":
+            return Function.atan
+        case "sqrt":
+            return Function.sqrt
+        case "exp":
+            return Function.exp
+        case "ln":
+            return Function.ln
+        case "log":
+            return Function.log
+        case "log2":
+            return Function.log2
+        case _:
+            return Function.unknown
+        }
+    }
+    
+    func getAllFuncs() -> String
+    {
+        return "sin|cos|tan|asin|acos|atan|sqrt|exp|ln|log|log2"
+    }
+}
 
 class Term {
     var isPositive:Bool

@@ -40,6 +40,17 @@ enum Token {
                 return 0
         }
     }
+    
+    func stringValue() -> String {
+        switch self {
+            case let Identifier(name):
+                return name
+            case let IntegerLit(value):
+                return String(value)
+            case _:
+                return ""
+        }
+    }
 }
 
 
