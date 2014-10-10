@@ -105,7 +105,7 @@ class Parse {
             return termOp(prod)
             
         case .Operator(op: "/"):
-            prod = MultiplicationExpression(expr,false)
+            prod = MultiplicationExpression(expr,true)
             nextToken()
             prod.add(signedFactor(),false)
             return termOp(prod)
@@ -148,8 +148,26 @@ class Parse {
     
     func argument()->ExpressionNode
     {
-        // Future impl will include functions + vars + brackets
-        return value()
+        // Future impl will include functions + vars 
+        
+        switch self.lookahead
+        {
+            case .Operator("("),.Operator(")"):
+                nextToken()
+                let expr:ExpressionNode=expression()
+                switch self.lookahead
+                {
+                case .Operator(")"):
+                        nextToken()
+                    return expr
+                case _:
+                    println("Expected closing bracket !")
+                    return expr
+                }
+            case _:
+                return value()
+        }
+        
     }
     
     func value()->ExpressionNode
