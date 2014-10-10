@@ -20,13 +20,6 @@
 
 import Foundation
 
-extension String {
-    var floatValue: Float {
-        return (self as NSString).floatValue
-    }
-}
-
-
 class Parse {
     var tokens:Array<Token>
     var lookahead:Token
@@ -44,10 +37,8 @@ class Parse {
         switch self.lookahead
         {
         case .End():
-            println("We're cool")
             return expression()
         case _:
-            println("There's a pb \(self.lookahead.description())")
             return expression()
 
         }

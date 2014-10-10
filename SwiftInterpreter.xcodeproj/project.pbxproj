@@ -14,6 +14,7 @@
 		FC5AE41719E1CCC9005708DC /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC5AE41519E1CCC9005708DC /* MainMenu.xib */; };
 		FC5AE42319E1CCC9005708DC /* SwiftInterpreterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE42219E1CCC9005708DC /* SwiftInterpreterTests.swift */; };
 		FC5AE42D19E1CD15005708DC /* Lex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5AE42C19E1CD15005708DC /* Lex.swift */; };
+		FC5C2F0819E881FA005DB703 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5C2F0719E881FA005DB703 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		FC5AE42119E1CCC9005708DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC5AE42219E1CCC9005708DC /* SwiftInterpreterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInterpreterTests.swift; sourceTree = "<group>"; };
 		FC5AE42C19E1CD15005708DC /* Lex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lex.swift; sourceTree = "<group>"; };
+		FC5C2F0719E881FA005DB703 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				FC5AE41119E1CCC9005708DC /* AppDelegate.swift */,
+				FC5C2F0719E881FA005DB703 /* Utilities.swift */,
 				FC5AE42C19E1CD15005708DC /* Lex.swift */,
 				FC07D7FF19E294650022B6DF /* Parser.swift */,
 				FC0F611019E8406E00120180 /* ExpressionTree.swift */,
@@ -217,6 +220,7 @@
 				FC5AE41219E1CCC9005708DC /* AppDelegate.swift in Sources */,
 				FC5AE42D19E1CD15005708DC /* Lex.swift in Sources */,
 				FC07D80019E294650022B6DF /* Parser.swift in Sources */,
+				FC5C2F0819E881FA005DB703 /* Utilities.swift in Sources */,
 				FC0F611119E8406E00120180 /* ExpressionTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

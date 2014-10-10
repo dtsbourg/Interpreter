@@ -16,7 +16,6 @@ enum Node:Int {
     case Multiplication
     case Exponential
     case Function
-    
 }
 
 protocol ExpressionNode {
@@ -176,7 +175,6 @@ class MultiplicationExpression : ExpressionNode
 
 class ExponentialExpression : ExpressionNode
 {
-    
     private let base:ExpressionNode
     private let exponent:ExpressionNode
     

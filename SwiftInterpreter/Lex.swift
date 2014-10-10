@@ -42,30 +42,6 @@ enum Token {
     }
 }
 
-protocol RegularExpressionMatchable {
-    func match(pattern: String, options: NSRegularExpressionOptions) -> Bool
-}
-
-extension String: RegularExpressionMatchable {
-    func match(pattern: String, options: NSRegularExpressionOptions = nil) -> Bool {
-        let regex = NSRegularExpression(pattern: pattern, options: options, error: nil)
-        return regex?.matchesInString(self, options: nil, range: NSMakeRange(0, self.utf16Count)).count != 0
-        
-    }
-}
-
-extension Character: RegularExpressionMatchable {
-    func match(pattern: String, options: NSRegularExpressionOptions = nil) -> Bool {
-        let regex = NSRegularExpression(pattern: pattern, options: options, error: nil)
-        return regex?.matchesInString(String(self), options: nil, range: NSMakeRange(0, String(self).utf16Count)).count != 0
-        
-    }
-}
-
-infix operator =~ { associativity left precedence 130 }
-func =~<T: RegularExpressionMatchable> (left: T, right: String) -> Bool {
-    return left.match(right, options: nil)
-}
 
 
 class Lex {
@@ -95,9 +71,7 @@ class Lex {
                 tokens.append(Token.Operator(op: String(tempc)))
             }
             else if (isDigit(tempc))
-            {
-                //add . to isDigit
-                
+            {                
                 var str = String(tempc)
                 
                 while (isDigit(tempc))
