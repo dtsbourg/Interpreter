@@ -16,6 +16,7 @@ A simple interpreter for an arithmetic language, written in Swift.
  factor_op := ^ expr
  expr := number
  ```
+ 
  ## Supported expressions
  
  Simple arithmetic operations are supported, where priorities can be forced by parentheses. No real type system yet,
